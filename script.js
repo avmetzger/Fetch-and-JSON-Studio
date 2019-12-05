@@ -4,6 +4,12 @@ window.addEventListener("load", function(){
         response.json().then(function(json){
             console.log(json);
             let container = document.getElementById("container");
+            container.innerHTML += `Astronaut count: ${json.length}<br><br>`;
+            json.sort(function(a,b){
+                let hoursA = a.hoursInSpace;
+                let hoursB = b.hoursInSpace;
+                return hoursB - hoursA;
+            })
             for (i=0; i< json.length; i++){
                 container.innerHTML += `
                 <div class="astronaut">
@@ -24,7 +30,6 @@ window.addEventListener("load", function(){
                     status[i].style.color = "green";
                 }
             }
-            console.log(status);
         });
     });
 });
